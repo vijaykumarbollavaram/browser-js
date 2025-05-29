@@ -1,27 +1,25 @@
-class Task extends HTMLElement {
+class MyElement extends HTMLElement {
   constructor() {
     super()
   }
-  static get observedAttributes() {
-    return ["name"]
-  }
-  attributeChangedCallback(name, oldValue, newValue) {
-    console.log(name, oldValue, newValue)
-  }
   connectedCallback() {
-    console.log(this.innerHTML)
-    console.log("connected");
-    const a = this.getAttribute('name')
-    console.log(a);
+    console.log("connected")
+    this.innerHTML = "Hello"
   }
 
+  static get observedAttributes() {
+    return ['name']
+  }
+
+  attributeChangedCallback(name, oldAttr, newAttr) {
+    console.log(name, oldAttr, newAttr)
+  }
 }
 
-customElements.define('hello-name', Task)
+customElements.define("custom-element", MyElement)
 
-
-const but = document.getElementById('button');
-but.addEventListener('click', function() {
-  const ele = document.querySelector('hello-name')
-  ele.setAttribute('name', "Akash");
+const ele = document.getElementById("button")
+ele?.addEventListener('click', function() {
+  const customEle = document.querySelector("custom-element")
+  customEle.setAttribute("name", "Ramesh")
 })
